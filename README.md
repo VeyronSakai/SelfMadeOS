@@ -6,11 +6,17 @@
 ## 環境
 
 - macOS Catalina
-- 仮想環境はQEMU
+- QEMU
 
-## 実行方法
+### QEMUのInstall方法
 
-次のコマンドを実行する。
+```sh
+brew install qemu
+```
+
+## 準備
+
+次のコマンドを実行します。
 
 ```sh
 echo export PATH=\$PATH:~/prog/env/ >> ~/.zshenv
