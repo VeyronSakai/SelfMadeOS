@@ -1,7 +1,15 @@
 BOOT_LOAD equ 0x7c00 ; ブートプログラムのロード位置
 ORG BOOT_LOAD ; ロードアドレスをアセンブラに指示
 
-entry: ; エントリーポイント
+;-------------
+; マクロ
+;-------------
+%include "../include/macro.s"
+
+;-------------
+; エントリーポイント
+;-------------
+entry:
     jmp ipl ; IPLへジャンプ
 
     ; BPB(BIOS Parameter Block)
@@ -23,17 +31,9 @@ ipl: ; IPL(Initial Program Loader)
     mov [BOOT.DRIVE], dl ; ブートドライブを保存
     
     ; 文字を表示
-    push    word 'A'
-    call    putc
-    add     sp, 2
-    
-    push    word 'B'
-    call    putc
-    add     sp, 2
-
-    push    word 'C'
-    call    putc
-    add     sp, 2
+    cdecl   putc, word 'X'
+    cdecl   putc, word 'Y'
+    cdecl   putc, word 'Z'
     
     ; 処理の終了
     jmp $ ; while(1); 無限ループ
@@ -42,7 +42,9 @@ ALIGN 2, db 0
 BOOT: ; ブートドライブに関する情報
 .DRIVE: dw 0 ; ドライブ番号を保存する場所。(アセンブル段階では0を記入しておく)
 
+;-------------
 ; モジュール
+;-------------
 %include    "../modules/real/putc.s"
 
 ; ブートフラグ
