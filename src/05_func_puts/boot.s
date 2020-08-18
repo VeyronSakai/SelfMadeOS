@@ -39,8 +39,7 @@ ipl: ; IPL(Initial Program Loader)
 ;-------------
 ; データ
 ;-------------
-.s0 
-    db "Hello, World", 0x0A, 0x0D, 0 ; 0x0Aは改行文字、0x0Dはカーソルを一番左に移すための文字
+.s0 db "Hello, World", 0x0A, 0x0D, 0 ; 0x0Aは改行文字、0x0Dはカーソルを一番左に移すための文字
 
 ALIGN 2, db 0
 BOOT: ; ブートドライブに関する情報
